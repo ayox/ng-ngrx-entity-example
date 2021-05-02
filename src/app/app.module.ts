@@ -7,7 +7,7 @@ import { UsersComponent } from './users/users.component';
 import { ProductsComponent } from './products/products.component';
 import { ClientsComponent } from './clients/clients.component';
 import { OrdersComponent } from './orders/orders.component';
-import { ProductsTypesComponent } from './products-types/products-types.component';
+import { ProductsCategoryComponent } from './products-category/products-category.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
@@ -19,7 +19,7 @@ import { MatTableModule } from '@angular/material/table';
     ProductsComponent,
     ClientsComponent,
     OrdersComponent,
-    ProductsTypesComponent,
+    ProductsCategoryComponent,
   ],
   imports: [
     BrowserModule,
