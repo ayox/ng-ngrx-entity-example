@@ -1,1 +1,28 @@
-<p>products-types works!</p>
+<h1 class="mat-h1">Products Categories</h1>
+
+<mat-progress-spinner
+  *ngIf="isLoading$ | async"
+  color="primary"
+  mode="indeterminate"
+>
+</mat-progress-spinner>
+
+<table
+  *ngIf="!(isLoading$ | async)"
+  mat-table
+  [dataSource]="dataSource$"
+  class="mat-elevation-z8"
+>
+  <ng-container matColumnDef="id">
+    <th mat-header-cell *matHeaderCellDef>ID</th>
+    <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+  </ng-container>
+
+  <ng-container matColumnDef="username">
+    <th mat-header-cell *matHeaderCellDef>Name</th>
+    <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+  </ng-container>
+
+  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+</table>

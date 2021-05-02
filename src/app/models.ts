@@ -6,9 +6,9 @@ export interface User {
 export interface Product {
   id: string;
   name: string;
-  price: string;
+  price: number;
   unit?: number;
-  productCategory: ProductCategory[];
+  productCategory: ProductCategory;
 }
 
 export interface ProductCategory {
@@ -24,8 +24,7 @@ export interface Order {
 
 export interface Client {
   id: string;
-  username: string;
-  orders: Order[];
+  fullName: string;
   user: User;
 }
 
@@ -36,10 +35,92 @@ export const data: {
   order: Order[];
   client: Client[];
 } = {
-  client: [],
-  order: [],
-  product: [],
-  productCategory: [],
+  client: [
+    {
+      id: '1',
+      fullName: 'aymen',
+      user: { id: '33', username: 'user 1 ' },
+    },
+    {
+      id: '1',
+      fullName: 'ahmed',
+      user: { id: '1', username: 'test' },
+    },
+  ],
+  order: [
+    {
+      id: '1',
+      client: {
+        id: '1',
+        fullName: 'aymen',
+        user: { id: '33', username: 'user 1 ' },
+      },
+      items: [
+        {
+          id: '1',
+          name: 'string',
+          price: 1000,
+          unit: 10,
+          productCategory: {
+            id: '1',
+            name: 'test',
+          },
+        },
+        {
+          id: '2',
+          name: 'string',
+          price: 4020,
+          unit: 3,
+          productCategory: {
+            id: '2',
+            name: 'test2',
+          },
+        },
+      ],
+    },
+  ],
+  product: [
+    {
+      id: '1',
+      name: 'string',
+      price: 2300,
+      unit: 1,
+      productCategory: {
+        id: '1',
+        name: 'test',
+      },
+    },
+    {
+      id: '2',
+      name: 'string',
+      price: 4020,
+      unit: 1,
+      productCategory: {
+        id: '2',
+        name: 'test2',
+      },
+    },
+    {
+      id: '3',
+      name: 'string',
+      price: 3949,
+      unit: 1,
+      productCategory: {
+        id: '1',
+        name: 'test',
+      },
+    },
+  ],
+  productCategory: [
+    {
+      id: '2',
+      name: 'test2',
+    },
+    {
+      id: '1',
+      name: 'test',
+    },
+  ],
   users: [
     { id: '33', username: 'user 1 ' },
     { id: '1', username: 'test' },

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models';
 import { Store } from '@ngrx/store';
-import { AppState, selectAllUsersState, selectLoadingUsers } from '../store';
-import { fetchUsers } from './users.actions';
 import { Observable, of } from 'rxjs';
+import {fetchUsers} from '../store/app-actions';
+import {AppState, selectAllUsers, selectLoadingUsers} from '../store/app-store';
 
 @Component({
   selector: 'app-users',
@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(fetchUsers());
 
-    this.dataSource$ = this.store.select(selectAllUsersState);
+    this.dataSource$ = this.store.select(selectAllUsers);
 
     this.isLoading$ = this.store.select(selectLoadingUsers);
   }
