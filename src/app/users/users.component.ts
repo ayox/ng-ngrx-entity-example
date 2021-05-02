@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models';
 import { Store } from '@ngrx/store';
-import { AppState, selectAllUsersS, selectLoadingUsers } from '../store';
+import { AppState, selectAllUsersState, selectLoadingUsers } from '../store';
 import { fetchUsers } from './users.actions';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-users',
@@ -11,18 +11,16 @@ import { Observable } from 'rxjs';
   styleUrls: ['./users.component.scss'],
 })
 export class UsersComponent implements OnInit {
-  public dataSource: User[] = [];
-  public isLoading$: Observable<boolean> | undefined;
-  public displayedColumns: string[] = ['id', 'username'];
+  public dataSource$: Observable<User[]> = of([]);
+  public isLoading$ = of(false);
+  public displayedColumns = ['id', 'username'];
 
   constructor(private store: Store<AppState>) {}
 
   ngOnInit(): void {
     this.store.dispatch(fetchUsers());
 
-    this.store.select(selectAllUsersS).subscribe((u) => {
-      this.dataSource = u;
-    });
+    this.dataSource$ = this.store.select(selectAllUsersState);
 
     this.isLoading$ = this.store.select(selectLoadingUsers);
   }

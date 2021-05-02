@@ -1,6 +1,5 @@
 import { createAction, props } from '@ngrx/store';
 import { User } from '../models';
-import { EntityMap, EntityMapOne, Predicate, Update } from '@ngrx/entity';
 
 const Component = '[Users]';
 

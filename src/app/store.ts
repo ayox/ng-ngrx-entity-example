@@ -14,7 +14,7 @@ export interface AppState {
 
 export const selectUsers = (state: AppState) => state.users;
 
-export const selectAllUsersS = createSelector(selectUsers, selectAllUsers);
+export const selectAllUsersState = createSelector(selectUsers, selectAllUsers);
 
 export const selectLoadingUsers = createSelector(
   selectUsers,
