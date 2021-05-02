@@ -8,7 +8,6 @@ import {
   loadProductCategories,
   loadUsers,
 } from './app-actions';
-import { ProductCategoryState, UserState } from './app-store';
 
 // User
 export const userAdapter: EntityAdapter<User> = createEntityAdapter<User>();
@@ -30,8 +29,6 @@ export const usersReducer = createImmerReducer(
     return state;
   })
 );
-
-export const getSelectedUserId = (state: UserState) => state.selectedUserId;
 
 export const userSelectors = userAdapter.getSelectors();
 
@@ -55,8 +52,5 @@ export const productsCategorysReducer = createImmerReducer(
     return state;
   })
 );
-
-export const getSelectedProductCategoryId = (state: ProductCategoryState) =>
-  state.selectedProductCategoryId;
 
 export const productsCategorySelectors = productsCategoryAdapter.getSelectors();
