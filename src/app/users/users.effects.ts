@@ -3,7 +3,7 @@ import { Actions, createEffect, ofType } from '@ngrx/effects';
 import { EMPTY } from 'rxjs';
 import { catchError, map, mergeMap } from 'rxjs/operators';
 import { DataService } from '../services/data.service';
-import { fetchUsers, usersLoaded } from './users.actions';
+import { fetchUsers, loadUsers, usersLoaded } from './users.actions';
 
 @Injectable()
 export class UsersEffects {
@@ -12,7 +12,7 @@ export class UsersEffects {
       ofType(fetchUsers),
       mergeMap(() =>
         this.dataService.getUsers$().pipe(
-          map((users) => usersLoaded({ payload: users })),
+          map((users) => loadUsers({ users })),
           catchError(() => EMPTY)
         )
       )

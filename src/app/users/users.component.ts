@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { User } from '../models';
 import { Store } from '@ngrx/store';
-import { AppState, selectAllUsers, selectLoadingUsers } from '../store';
+import { AppState, selectAllUsersS, selectLoadingUsers } from '../store';
 import { fetchUsers } from './users.actions';
 import { Observable } from 'rxjs';
 
@@ -20,7 +20,7 @@ export class UsersComponent implements OnInit {
   ngOnInit(): void {
     this.store.dispatch(fetchUsers());
 
-    this.store.select(selectAllUsers).subscribe((u) => {
+    this.store.select(selectAllUsersS).subscribe((u) => {
       this.dataSource = u;
     });
 
