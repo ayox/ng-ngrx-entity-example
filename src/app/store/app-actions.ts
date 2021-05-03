@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { ProductCategory, User } from '../models';
+import { Product, ProductCategory, User } from '../models';
 
 const UserComponent = '[Users]';
 
@@ -17,6 +17,15 @@ export const fetchProductCategories = createAction(
 );
 
 export const loadProductCategories = createAction(
-  `${ProductCategoryComponent} Load Users`,
+  `${ProductCategoryComponent} Load`,
   props<{ productCategories: ProductCategory[] }>()
+);
+
+const ProductComponent = '[Product]';
+
+export const fetchProducts = createAction(`${ProductComponent} Fetch`);
+
+export const loadProducts = createAction(
+  `${ProductComponent} Load`,
+  props<{ products: Product[] }>()
 );

@@ -5,8 +5,10 @@ import { catchError, map, mergeMap } from 'rxjs/operators';
 import { DataService } from '../services/data.service';
 import {
   fetchProductCategories,
+  fetchProducts,
   fetchUsers,
   loadProductCategories,
+  loadProducts,
   loadUsers,
 } from './app-actions';
 
@@ -32,6 +34,18 @@ export class AppEffects {
           map((productCategories) =>
             loadProductCategories({ productCategories })
           ),
+          catchError(() => EMPTY)
+        )
+      )
+    )
+  );
+
+  loadProduct$ = createEffect(() =>
+    this.actions$.pipe(
+      ofType(fetchProducts),
+      mergeMap(() =>
+        this.dataService.getProduct$().pipe(
+          map((products) => loadProducts({ products })),
           catchError(() => EMPTY)
         )
       )

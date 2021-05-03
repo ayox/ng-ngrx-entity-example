@@ -17,7 +17,7 @@ import {
 export class ProductsCategoryComponent implements OnInit {
   public dataSource$: Observable<ProductCategory[]> = of([]);
   public isLoading$ = of(false);
-  public displayedColumns = ['id', 'username'];
+  public displayedColumns = ['id', 'name'];
 
   constructor(private store: Store<AppState>) {}
 

@@ -17,7 +17,7 @@ import { environment } from '../environments/environment';
 import { EffectsModule } from '@ngrx/effects';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { AppEffects } from './store/app-effects';
-import { productsCategorysReducer, usersReducer } from './store/app-reducer';
+import {productsCategoriesReducer, productsReducer, usersReducer} from './store/app-reducer';
 
 @NgModule({
   declarations: [
@@ -38,7 +38,8 @@ import { productsCategorysReducer, usersReducer } from './store/app-reducer';
     StoreModule.forRoot(
       {
         users: usersReducer,
-        productCategories: productsCategorysReducer,
+        productCategories: productsCategoriesReducer,
+        products: productsReducer,
       },
       {}
     ),
