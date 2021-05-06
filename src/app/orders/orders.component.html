@@ -1,1 +1,32 @@
-<p>orders works!</p>
+<h1 class="mat-h1">Orders</h1>
+
+<ng-container *ngIf="query$ | async as query">
+  <ng-container [ngSwitch]="query.status">
+    <table
+      *ngSwitchDefault
+      mat-table
+      [dataSource]="query?.data || []"
+      class="mat-elevation-z8"
+    >
+      <ng-container matColumnDef="id">
+        <th mat-header-cell *matHeaderCellDef>ID</th>
+        <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+      </ng-container>
+
+      <ng-container matColumnDef="client">
+        <th mat-header-cell *matHeaderCellDef>Name</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.client.fullName }}
+        </td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    </table>
+    <div *ngSwitchCase="'loading'">
+      <mat-progress-spinner color="primary" mode="indeterminate">
+      </mat-progress-spinner>
+    </div>
+    <div *ngSwitchCase="'error'">Error ({{ query.error }})</div>
+  </ng-container>
+</ng-container>

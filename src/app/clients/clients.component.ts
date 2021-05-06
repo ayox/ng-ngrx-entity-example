@@ -1,15 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { query } from 'rx-query';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-clients',
   templateUrl: './clients.component.html',
-  styleUrls: ['./clients.component.scss']
+  styleUrls: ['./clients.component.scss'],
 })
-export class ClientsComponent implements OnInit {
+export class ClientsComponent {
+  public query$ = query(
+    ClientsComponent.toString(),
+    this.dataService.getClient$
+  );
+  public displayedColumns = ['id', 'fullName'];
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
-
+  constructor(private dataService: DataService) {}
 }

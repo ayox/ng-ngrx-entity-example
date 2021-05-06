@@ -12,6 +12,13 @@ export class DataService {
   public getUsers$(): Observable<User[]> {
     return of(data.users).pipe(delay(300));
   }
+  public addUser$(id: number): Observable<User[]> {
+    data.users.push({
+      id: id.toString(),
+      username: 'hello added' + id,
+    });
+    return of(data.users).pipe(delay(300));
+  }
 
   public getProduct$(): Observable<Product[]> {
     return of(data.product).pipe(delay(300));

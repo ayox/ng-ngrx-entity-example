@@ -11,13 +11,8 @@ import { ProductsCategoryComponent } from './products-category/products-category
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatTableModule } from '@angular/material/table';
-import { StoreModule } from '@ngrx/store';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from '../environments/environment';
-import { EffectsModule } from '@ngrx/effects';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
-import { AppEffects } from './store/app-effects';
-import {productsCategoriesReducer, productsReducer, usersReducer} from './store/app-reducer';
+import {MatButtonModule} from '@angular/material/button';
 
 @NgModule({
   declarations: [
@@ -27,6 +22,7 @@ import {productsCategoriesReducer, productsReducer, usersReducer} from './store/
     ClientsComponent,
     OrdersComponent,
     ProductsCategoryComponent,
+    ProductsComponent,
   ],
   imports: [
     BrowserModule,
@@ -35,19 +31,7 @@ import {productsCategoriesReducer, productsReducer, usersReducer} from './store/
     MatTabsModule,
     MatTableModule,
     MatProgressSpinnerModule,
-    StoreModule.forRoot(
-      {
-        users: usersReducer,
-        productCategories: productsCategoriesReducer,
-        products: productsReducer,
-      },
-      {}
-    ),
-    StoreDevtoolsModule.instrument({
-      maxAge: 25, // Retains last 25 states
-      logOnly: environment.production, // Restrict extension to log-only mode
-    }),
-    EffectsModule.forRoot([AppEffects]),
+    MatButtonModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

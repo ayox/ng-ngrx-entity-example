@@ -1,27 +1,24 @@
-import { Component, OnInit } from '@angular/core';
-import { User } from '../models';
-import { Store } from '@ngrx/store';
-import { Observable, of } from 'rxjs';
-import {fetchUsers} from '../store/app-actions';
-import {AppState, selectAllUsers, selectLoadingUsers} from '../store/app-store';
+import { Component } from '@angular/core';
+import { query, refreshQuery } from 'rx-query';
+import { DataService } from '../services/data.service';
 
 @Component({
   selector: 'app-users',
   templateUrl: './users.component.html',
   styleUrls: ['./users.component.scss'],
 })
-export class UsersComponent implements OnInit {
-  public dataSource$: Observable<User[]> = of([]);
-  public isLoading$ = of(false);
+export class UsersComponent {
+  public usersQuery$ = query(
+    UsersComponent.toString(),
+    this.dataService.getUsers$
+  );
   public displayedColumns = ['id', 'username'];
 
-  constructor(private store: Store<AppState>) {}
+  constructor(private dataService: DataService) {}
 
-  ngOnInit(): void {
-    this.store.dispatch(fetchUsers());
-
-    this.dataSource$ = this.store.select(selectAllUsers);
-
-    this.isLoading$ = this.store.select(selectLoadingUsers);
+  public addUser(): void {
+    this.dataService.addUser$(Math.random()).subscribe(() => {
+      refreshQuery(UsersComponent.toString());
+    });
   }
 }
